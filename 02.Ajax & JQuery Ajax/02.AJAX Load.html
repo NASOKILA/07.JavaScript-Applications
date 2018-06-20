@@ -1,0 +1,42 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AJAX Load Example</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+<div id="text">
+    <h1>AJAX jQuery.load()</h1>
+    <button onclick="LoadTitle()">Load Title</button>
+</div>
+<script>
+    function LoadTitle()
+    {
+        let div = $('<div>').load('http://www.staggeringbeauty.com/');
+        //.load() e vgradena funkciq na JQuery i zamenq sudurjanieto na nqkkuv element s novo 
+        $('#text').append(div);
+        // v suchaq zamenqme sudurjanieto na diva s ID '#text' sus sudurjanieto na faila 'text.html' !!! 
+    }
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

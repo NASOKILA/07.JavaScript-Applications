@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>GitHub Repos</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+</head>
+<body>
+GitHub username:
+<input type="text" id="username" value="k1r1L" />
+<button onclick="loadRepos()">Load Repos</button>
+<ul id="repos">
+  <li>
+    <a href="{repo.html_url}">
+      {repo.full_name}
+    </a>
+  </li>
+</ul>
+<script>
+    function loadRepos() {
+
+        //izchistvame #repos ot kakvoto i da e
+        $('#repos').empty();
+
+        //vzimme stoinostta ot inputa 
+        let inputValue = $('#username').val();        
+        
+        //chistim inputa
+        $('#username').val("");
+
+        //pravim si url-a ot koito shte durpame
+        let url = `https://api.github.com/users/${inputValue}/repos`;
+
+        //pravim si zaqvkata
+        //V $.ajax({...}) pravim masiv v koito podavame : metoda, adresa i greshkata
+        //na success: slagame funkciq koqto shte se izpulni ako vsichko mine dobre
+        //i na error slagame funkciq koqto shte se izpulni ako neshto se oburka
+
+        //MOJEM DA POLZVAME I $.get({...}) ILI $.post({...}) ILI $.delete({...}) 
+        //OBACHE ZA PO SIGURNO SI PISHEM $.ajax({...});
+
+        $.ajax({
+            'method':'GET',
+            'url':url,
+            'success': handleSuccess,
+            'error': handleError
+        });
+
+        //po default poluchavame 'response'
+        function handleSuccess(res){
+            
+            //za vsqka reositoriq trqbva da napravim 'li' sus 'a' tag v nego
+            for (let repo of res) {
+
+                //zakachame linka na repositoriqta za <a> sus imeto na repositoriqta
+                let a = $(`<a href="${repo.html_url}">${repo.full_name}</a>`);
+
+                //zakachame <a> za <li>-to
+                let li = $('<li></li>')
+                    .append(a);
+                
+                
+                $('#repos').append(li);
+            }
+        }
+
+        //po default poluchavame 'error'
+        function handleError(err){
+            
+            //zakachame <a> za <li>-to
+            let li = $(`<li><a>${err.status} ${err.statusText}</a></li>`);
+            
+            $('#repos').append(li);
+
+        }
+
+    }
+</script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

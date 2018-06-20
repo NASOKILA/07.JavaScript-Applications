@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>XmlHttpRequest Example</title>
+    
+</head>
+<body>
+<button onclick="loadRepos()">Load Repos</button>
+<div id="res"></div>
+<script>
+   function loadRepos() {
+    
+    //Celta e da printiram na nakov repositoriqta v div s id 'res' !
+
+    //Vzimame si requesta
+    let req = new XMLHttpRequest(); //tova e klas 
+
+    //zakachame mu onreadystatechange funkciq koqto shte se izpulni kogato state-a se promeni.
+    //tova e kato onChange event.
+
+    req.onreadystatechange = function(){    
+        //kato napishem req.send() v tazi funkciq vlizame 4 puti
+        //1 - za vruzka sus servera, 
+        //2 - za poluchen request, 
+        //3 - za obrabotvane na tozi request 
+        //4 - kogato requesta e prikluchil i imame respons
+        //steita moje da e mejdu 0 i 4, ako e chetiri znachi vsichko e prikluchilo i imame response ot zaqvkata
+        if(this.readyState === 4 && this.status === 200) //znaem che statusa e 200 kogato vsichko e nared
+        {
+            //na elementa s id 'res' setvame texta ot responsa t.e. masiva ot JSON-i
+            document.getElementById("res").textContent = this.responseText;
+
+            //tuk znaem che 'this' sochi kum samiq request.
+            //a responseText e tova koeto vrushta responsa
+        }
+    };
+
+    //za da se promeni kakvoto i da e po tozi request toi trqbva purvo da se otvori.
+    //kazvame kakva e zaqvkata i na koi adress, sus 'true' kazvame che e asinhromno 
+    req.open("GET","https://api.github.com/users/testnakov/repos", true);
+    
+    //taka izprashta zaqvkata do adresa, promenq se steita i se izpulnqva gornata funkciqta !!!
+    req.send();
+
+}
+</script>
+</body>
+</html>
