@@ -1,0 +1,59 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>If Else Statements</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+</head>
+<body>
+
+<script>
+
+    (async function(){
+
+
+        //vzimame si i partial template-a 
+        let partial = await $.get('partial.hbs');
+        
+        //i go registrirame sus SPECIALNO IME
+        Handlebars.registerPartial('partial' , partial); 
+        
+        
+        let source = await $.get('partialInsert.hbs');
+        
+        let template = Handlebars.compile(source.documentElement.outerHTML);
+
+        
+        //IMAME INSERTNAT VTOROSTEPENEN TEMPLATE KOITO IMA 'Age', V TOZI TEMPLATE KOITO POLZVAME
+        //ZA TOVA SEGA TRQBVA DA MU SLOJIM I 'Age' 
+        
+        let context = {
+            
+            title: 'Insert template to another template',
+            contacts: [
+                { name: 'Ivan Ivanov', phone: '0889037703', email: 'i.ivanov@gmail.com' },
+                { name: 'Maria Petrova', phone: '0889055543', email: 'mar4eto@abv.bg' }
+            ]};
+
+        let html = template(context);
+
+        $('body').append(html);    
+        
+    })();
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

@@ -1,0 +1,62 @@
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>If Else Statements</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+</head>
+<body>
+
+<script>
+
+    (async function(){
+
+        let source = await $.get('ifElseTemplate.hbs');
+
+        let context = {
+            sunny : false
+        }
+        
+        let template = Handlebars.compile(source.documentElement.outerHTML);
+        let html = template(context);        
+        $('body').append(html);
+
+
+
+    })();
+
+    (async function(){
+
+        let source = await $.get('ifElseTemplate2.hbs');
+
+        let template = Handlebars.compile(source.documentElement.outerHTML);
+
+        let context = {
+            contacts: [
+                { name: 'Ivan Ivanov', email: 'i.ivanov@gmail.com'},
+                { name: 'Maria Petrova', email: 'mar4eto@abv.bg'},
+                { name: 'Jordan Kirov', email: 'jordk@gmail.com'}
+            ]};
+
+            //Ako context obekta e prazen shte pokaje ( empty)
+
+        let html = template(context);
+        $('body').append(html);    
+        
+    })();
+
+</script>
+
+</body>
+</html>
+
+
+
+
+
+
+
+

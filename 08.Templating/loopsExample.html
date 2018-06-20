@@ -1,0 +1,46 @@
+
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Loops</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+</head>
+
+<body>
+
+<script>
+    
+   (async function(){
+       
+        let source = await $.get('loops.hbs')
+        
+        let template = Handlebars.compile(source.documentElement.outerHTML);
+
+        //pravim si obekt s masiv ot obekti koito da podadem na template-ta
+        let context = {
+            title : 'My Contacts',
+            contacts: [
+                { name: 'Ivan Ivanov', email: 'i.ivanov@gmail.com'},
+                { name: 'Maria Petrova', email: 'mar4eto@abv.bg'},
+                { name: 'Jordan Kirov', email: 'jordk@gmail.com'}
+            ]};
+
+        let html = template(context);
+        
+        $('body').append(html);
+
+    }());
+        
+</script>
+
+</body>
+</html>
+
+
+

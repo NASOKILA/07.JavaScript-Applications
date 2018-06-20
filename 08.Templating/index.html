@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Example</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+    <!--
+    <script src="/node_modules/handlebars/dist/handlebars.min.js"></script>
+    -->
+
+</head>
+
+<body>
+    <!--V LUCHAQ IMAME TEMPLATE S ID KOITO E V SUSHTiq FAIL A NE V OTDELEN-->
+    <script id="entry-template" type="text/x-handlebars-template">
+            <div class="entry">
+                <h1>{{title}}</h1>
+                <div class="body">{{body}}</div>
+            </div>
+    </script>
+
+
+    <script>
+
+        (async function () {
+
+            //Pravim zaqvka do template faila za da mu vzemem sudurjanieto
+            let template = await $.get('template.html');
+
+            //i printirame HTML a i
+            let templateHTML = template.documentElement.outerHTML;
+            console.log(templateHTML);
+
+            //Obache trqbva da izchakame da zaredi zaqvkata za da ni se pokaje HTML-a inache
+            //pokazva nqkuv OBEKT.
+
+            //sled kato imame template-a mojem da si go appendvame kudeto si iskame i kolkoto si iskame;
+            $('body').append(templateHTML);
+
+
+
+            //Mojem da slagame promenlivi s razlichni stoinosti v HTML tagovete s Handlebars,
+            //No mojem i prosto da gi matchnem s nqkkuv regex primerno pak shte stane.
+            let templateHTML1 = templateHTML.replace(/{{head}}/g, 'NewHead');
+            templateHTML1 = templateHTML1.replace(/{{body}}/g, 'NewBody');
+            $('body').append(templateHTML1);
+
+            //Po tozi nachin nie mojem da si izmislim nash si sintaksis za tova :
+            //Primerno [[{{...}}]] i posle s regex da repleisvame.
+
+
+            //NO PO DOBRE E DA SE PRAVI S GOTOVA BIBLIOTEKA V KOQTO TOVA VECHE E NAPRAVENO.
+            //TAM IMAME I IFOVE CIKLI I DRUGI KONSTRUKCII.
+            /*
+                Vidove templates:
+                    01.Pug - S edno kuchence e,
+                    02.Vue,
+                    03.JQuery templates,
+                    04.UNDERSCORE.JS templates,
+                    05.Mustage,
+                    06.Handlebars
+                    
+                    Vseki edin ot teqh pishe malko po rzlichen HTML koito posle se kompilira kum normalen HTML.
+    
+            */
+        }());
+
+
+
+        //IMAME TEMPLATE NA SUSHTATA STRANICA
+        //IMAME TEMPLATE NA SUSHTATA STRANICA
+        //IMAME TEMPLATE NA SUSHTATA STRANICA
+
+        //VZIMAME GO
+        let source = $("#entry-template").html();
+
+        //KOMPILIRAME GO V PROMENLIVA, TOVA GO PRAVIN HA .hbs FAIL
+        let template2 = Handlebars.compile(source);
+
+        //SUZDAVAME SI OBEKT SUS SUSHTITE KLUCHOVE NO SUS NASHI SI StoiNOSti
+        let context = {
+            title: "My New Post",
+            body: "This is my first post!"
+        };
+
+        //I GO PODAVAME NA TEMPLATE2 PROMENLIVATA
+        let html = template2(context);
+
+        //zakachame go za html-a ni
+        $('body').append(html);
+
+
+
+
+
+
+            //ZAREJDAME FRUG TEMPLATE OT DRUG FAIL
+            //ZAREJDAME FRUG TEMPLATE OT DRUG FAIL
+            //ZAREJDAME FRUG TEMPLATE OT DRUG FAIL
+
+        (async function () {
+            //ZAREJDAME FRUG TEMPLATE OT DRUG FAIL
+            let source2 = await $.get('template2.html');
+
+            let source2HTML = source2.documentElement.innerHTML;
+
+            let template3 = Handlebars.compile(source2HTML);
+
+            let context3 = {
+                title: "FIRST TITLE",
+                secondTitle: "SECOND TITLE",
+                body: "BODY"
+            };
+
+            let html2 = template3(context3);
+
+
+
+            $('body').append(html2);
+
+        })();
+
+    </script>
+
+</body>
+
+</html>

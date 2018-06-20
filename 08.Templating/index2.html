@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Example</title>
+    <script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/handlebars.js/4.0.11/handlebars.min.js"></script>
+</head>
+
+<body>
+
+<script>
+    
+   (async function(){
+        
+        let source = await $.get('template3.html')
+
+        let template = Handlebars.compile(source.documentElement.outerHTML);
+        
+        let context = {
+            name : 'Nasko',
+            phone: '0877987764',
+            email: 'nasko@abv.bg'
+        }
+
+        let html = template(context);
+        
+        $('body').append(html);
+
+    }());
+        
+</script>
+
+
+
+</body>
+</html>
+
+
+

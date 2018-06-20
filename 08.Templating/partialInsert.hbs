@@ -1,0 +1,20 @@
+<article>
+    <h1>{{title}}</h1>
+    {{#each contacts}}
+    <div class="title">
+        {{name}}
+        <button>&#8505;</button>
+    </div>
+    <div class="info">
+        <p>☎ {{phone}}</p>
+        <p>✉ {{email}}</p>
+    </div>
+    <!--Polzvame '>' za da insertvame drug template, faila mu se kazva partial
+        Trqbva tuk imeto mu da e kakto sme mu go zakachii v html faila sus 
+        Handlebars.registerPartial('nameofPartial', partialObj); 
+    
+        RABOTI NO ZA FIREFOX TRQBVA DA GO ESKEIPNA A NE ZNAM KAK !!!!
+    -->
+    {{> partial}} 
+    {{/each}}
+</article>
