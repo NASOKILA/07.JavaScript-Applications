@@ -1,0 +1,32 @@
+ {{> header }}
+
+ {{> menu }}
+<section id="viewFeed">
+    <div class="content">
+        <div class="chirper">
+
+            <h2 class="titlebar">{{username}}</h2>
+
+            {{> createChirpForm}}
+
+            <div id="userStats" class="user-details">
+                <span>{{chirpsCount}} chirps</span> |
+                <span>{{followingUsersCount}} following</span> |
+                <span>{{followersCount}} followers</span>
+            </div>
+        </div>
+        <div id="chirps" class="chirps">
+            <h2 class="titlebar">Chirps</h2>
+            
+            {{#each chirps}} 
+                {{> chirp}} 
+            {{/each}}
+
+            {{#if noChirps}}
+            <p>No chirps in the database.</p>
+            {{/if}}
+        </div>
+    </div>
+</section>
+
+{{> footer }}
