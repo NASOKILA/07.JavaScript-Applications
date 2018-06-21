@@ -1,0 +1,16 @@
+<section id="welcome">
+    <div class="container centered">
+        <!--<header>&#9993; Contact Book</header>-->
+        {{> header}}
+        {{> navigation}}
+        <!--Ako sme autentikirani da zarejda edin templeit a ako ne sme da zarejda drug-->
+        {{#if isAuth}} 
+            {{> contactPage}}
+        {{else}}
+           {{> loginForm}} <!--Iznesohme login formata v otdelen .hbs fail-->
+        {{/if}}
+
+        <!--<footer>Contact Book SPA &copy; 2017</footer>-->
+        {{> footer}}
+    </div>
+</section>

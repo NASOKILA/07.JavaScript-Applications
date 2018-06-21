@@ -1,0 +1,16 @@
+<div id="book" class="box-large">
+    <div id="list">
+        {{> contactsList}}
+
+    </div>
+    <div id="details">
+        <!--Ako imame neshto selektirano mu pokazvame detailite ako ne zakachame suobshtenie-->
+        {{#if selected}} 
+            {{> contactDetails}} 
+        {{else}}
+        <div class="content">
+            <h3>You have not selected a contact!</h3>
+        </div>
+        {{/if}}
+    </div>
+    {{> footer}}
