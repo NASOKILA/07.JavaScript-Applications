@@ -1,0 +1,29 @@
+
+{{> header}}
+
+<section id="viewMyMessages">
+                <h1>My Messages</h1>
+                <div class="messages" id="myMessages">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>From</th>
+                                <th>Message</th>
+                                <th>Date Received</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            
+                            {{#each messages}}
+                                {{> message}}
+                            {{/each}}
+                            
+                        </tbody>
+                    </table>
+                        {{#if noMessages}}
+                            <p>No messages in database.</p>
+                        {{/if}}
+                </div>
+            </section>
+
+{{> footer}}
