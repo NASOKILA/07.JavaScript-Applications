@@ -1,0 +1,25 @@
+
+{{> header}}
+
+<section id="viewAds" class="viewAds">
+    <h1 class="titleForm">Advertisements</h1>
+    <div id="ads" class="ads">
+        <table>
+            <tr>
+                <th>Title</th>
+                <th>Description</th>
+                <th>Publisher</th>
+                <th>Date Published</th>
+                <th>Price</th>
+                <th>Actions</th>
+            </tr>
+
+            {{#each ads}}
+                {{> adv}}
+            {{/each}}
+     
+        </table>
+    </div>
+</section>
+
+{{> footer}}

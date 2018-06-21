@@ -1,0 +1,38 @@
+
+
+<form method="POST" action="#/edit" id="formEditAd" class="form">
+   
+   <div>    
+        <input type="text" name="id" value="{{ad._id}}" hidden/>
+   </div>
+    <div>
+        <input type="hidden" value="{{ad.views}}" name="views" required />
+    </div>
+    <div>
+        <input type="hidden" name="publisher" required />
+    </div>
+    <div>Title:</div>
+    <div>
+        <input type="text" value="{{ad.title}}" name="title" required />
+    </div>
+    <div>Description:</div>
+    <div>
+        <textarea name="description" rows="10" required>{{ad.description}}</textarea>
+    </div>
+    <div>Date Published:</div>
+    <div>
+        <input type="date" value="{{ad.date}}" name="datePublished" required />
+    </div>
+    <div>Price:</div>
+    <div>
+        <input type="number" step="0.01" value="{{ad.price}}" name="price" required />
+    </div>
+    <div>Image:</div>
+    <div>
+        <input type="text" value="{{ad.linkToImage}}" name="imageUrl" />
+    </div>
+
+    <div>
+        <input type="submit" id="buttonEditAd" value="Edit" />
+    </div>
+</form>
