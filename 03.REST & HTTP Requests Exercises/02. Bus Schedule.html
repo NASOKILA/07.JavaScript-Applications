@@ -39,7 +39,7 @@
         </div>
     </div>
     <script>
-        
+
         function solve() {
 
             let stop = 'depot';
@@ -48,7 +48,7 @@
 
                 $("#depart").removeAttr('disabled');
                 $("#arrive").removeAttr('disabled');
-                
+
                 $('#depart').prop('disabled', 'true');
                 $('#arrive').prop('disabled');
 
@@ -67,12 +67,11 @@
                 });
             }
 
-            function arrive()
-            {
+            function arrive() {
 
                 $("#depart").removeAttr('disabled');
                 $("#arrive").removeAttr('disabled');
-                
+
                 $('#depart').prop('disabled');
                 $('#arrive').prop('disabled', 'true');
 
@@ -92,7 +91,7 @@
                 });
             }
 
-           return {
+            return {
                 depart,
                 arrive
             };
