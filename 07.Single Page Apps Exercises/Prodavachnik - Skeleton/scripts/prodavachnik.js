@@ -4,8 +4,6 @@ const APP_KEY = 'kid_SynTc0i9z'
 const APP_SECRET = 'c8ea46cb339d4834b62543e35d7c8e17'
 const AUTH_HEADERS = { 'Authorization': "Basic " + btoa(APP_KEY + ":" + APP_SECRET) }
 
-
-
 function startApp() {
 
     showHideMenuLinks();
@@ -13,9 +11,8 @@ function startApp() {
 
     function showHideMenuLinks() {
 
-        //po default vinagi da se pokazva
         $('#linkHome').show();
-        if (sessionStorage.getItem('authToken') === null) { // No logged in user
+        if (sessionStorage.getItem('authToken') === null) {
             $('section').hide();
             $('#linkListAds').hide();
             $('#linkCreateAd').hide();
@@ -24,8 +21,7 @@ function startApp() {
             $('#loggedInUser').hide();
             $('#linkLogin').show();
             $('#linkRegister').show();
-        } else { // We have logged in user
-
+        } else {
             $('#linkLogin').hide();
             $('#linkRegister').hide();
             $('section').hide();
@@ -33,25 +29,13 @@ function startApp() {
             $('#linkCreateAd').show();
             $('#linkLogout').show();
             $('#loggedInUser').text("Welcome, " + sessionStorage.getItem('username') + "!")
-            $('#loggedInUser').show();  
+            $('#loggedInUser').show();
         }
-        
+
         $('#viewHome').show();
     }
 
-   /* (function showDefault() {
-
-        //po default pokazvame
-        $('#linkHome').show();
-        $('#linkLogin').show();
-        $('#linkRegister').show();
-
-        //po default pokazvame #viewHome
-        $('#viewHome').show();
-    })();*/
-
     function attachEvents() {
-        //slagame si klick eventi na butonite da pokazvat viewtata
         $('#linkLogin').click(showLoginView);
         $('#linkRegister').click(showRegisterView);
         $('#linkHome').click(showHomeView);
@@ -63,7 +47,6 @@ function startApp() {
         $('#formLogin #buttonLoginUser').click(loginUser);
         $('#buttonCreateAd').click(createAdd);
         $('#buttonEditAd').click(edit);
-        
     };
 
     function showAddview() {
@@ -82,16 +65,14 @@ function startApp() {
         $('section').hide();
         $('#viewEditAd').show();
 
-        //vrushtame starite stoinosti
-        $('#formEditAd input[name=id]').val(add._id);        
-        $('#formEditAd input[name=views]').val(add.views);        
+        $('#formEditAd input[name=id]').val(add._id);
+        $('#formEditAd input[name=views]').val(add.views);
         $('#formEditAd input[name=title]').val(add.title);
         $('#formEditAd div textarea').val(add.description);
 
         $('#formEditAd input[name=datePublished]').val(add.date);
         $('#formEditAd input[name=price]').val(add.price);
         $('#formEditAd input[name=image]').val(add.linkToImage);
-
     }
 
     function edit() {
@@ -118,13 +99,11 @@ function startApp() {
         })
             .then(function (res) {
 
-                setTimeout(function(){
-
+                setTimeout(function () {
                     $('#loadingBox').fadeOut();
                     showAds();
                     showInfo('Add edited.');
-    
-                },2000);
+                }, 2000);
 
             })
             .catch(function (err) {
@@ -149,7 +128,6 @@ function startApp() {
 
     function listAds() {
 
-
         $.ajax({
             method: 'GET',
             url: BASE_URL + 'appdata/' + APP_KEY + '/advertisements',
@@ -157,12 +135,10 @@ function startApp() {
 
         }).then(function (res) {
 
-            //MAHAME STARITE KNIGI I DOBAVQME NOVI
             $('tbody').find('tr').each(function (index, el) {
                 if (index !== 0)
                     $(el).remove();
             });
-
 
             for (let add of res.sort((a, b) => Number(a.views) < Number(b.views))) {
 
@@ -198,14 +174,9 @@ function startApp() {
                 else
                     tr.append('<td></td>');
 
-
-
                 $('tbody').append(tr);
-
             }
-
         })
-
     }
 
     function readMore(add) {
@@ -242,13 +213,12 @@ function startApp() {
             $('#viewDetailsAd').append(div);
             $('#loadingBox').hide();
             $('#viewDetailsAd').show();
-            
+
         }, 1000);
 
     }
 
     function increaseViews(add) {
-
 
         let addId = add._id;
         let views = Number(add.views) + 1;
@@ -317,7 +287,6 @@ function startApp() {
         let price = Number($($('#formCreateAd input')[2]).val());
         let linkToImage = $($('#formCreateAd input')[3]).val();
         let views = 0;
-        //clear input fields
 
         $($('#formCreateAd input')[0]).val("");
         $('#formCreateAd textarea').val("");
@@ -336,16 +305,15 @@ function startApp() {
         })
             .then(function (res) {
 
-                setTimeout(function(){
+                setTimeout(function () {
                     $('#loadingBox').fadeOut();
                     showAds();
                     showInfo('Add created.');
-                },2000);
+                }, 2000);
             })
             .catch(function (err) {
                 handleAjaxError(err);
             })
-
     }
 
     function registerUser() {
@@ -357,18 +325,15 @@ function startApp() {
             method: 'POST',
             url: BASE_URL + 'user/' + APP_KEY + '/',
             headers: AUTH_HEADERS,
-            data: { username, password } //ako go stringifienem obekta koito poluchavame sudurja veche kriptirani user i parola
+            data: { username, password }
         }).then(function (res) {
-            //Zapazvame usera v sesiqta
             signInUser(res, 'Registration successfull');
-
             $('#viewHome').show();
         })
             .catch(function (err) {
                 alert(`Invalid credentials or username and password already in use !`)
             })
 
-        //chistim poletata
         $($('#formRegister input')[0]).val("");
         $($('#formRegister input')[1]).val("");
     }
@@ -378,8 +343,6 @@ function startApp() {
         let username = $($('#formLogin input')[0]).val();
         let password = $($('#formLogin input')[1]).val();
 
-        //Sega trqbv da se lohnem
-        //NE PROMENQME NISHTO PO BAZATA NO TRQBVA DA SE LOGNEM SUS 'POST' ZAQVKA
         $.ajax({
             method: 'POST',
             url: BASE_URL + 'user/' + APP_KEY + '/login',
@@ -393,38 +356,24 @@ function startApp() {
             })
             .catch(handleAjaxError);
 
-        //chistim poletata
         $($('#formLogin input')[0]).val("");
         $($('#formLogin input')[1]).val("");
     }
 
     function logout() {
-        //chistim sessiqta
         sessionStorage.clear();
-
-        //i da promenim lnkovete za viewto
         showHideMenuLinks();
-
         showInfo('Logout successful.')
     }
 
     function signInUser(res, message) {
 
-        //sega trqbva da zapzim imeto, autoken (autentikation token), i userId v session storage:
         sessionStorage.setItem('username', res.username);
         sessionStorage.setItem('authToken', res._kmd.authtoken);
         sessionStorage.setItem('userId', res._id);
 
-        //Preprashtame usera na home stranicata.
         showHomeView();
-
-        //POKAZVAME DRUGI LINKOVE GORE V MENUBARA, POKAZVAME TEZI KOITO SA ZA VECHE REGISTRIRA USER.
-        showHideMenuLinks(); //skriva vsichki linkove proverqva dali sme lognati i ako sme, ni pokazva linkovete za lognat user    
-
+        showHideMenuLinks();
         showInfo(message);
     }
-
-
-
 }
-
