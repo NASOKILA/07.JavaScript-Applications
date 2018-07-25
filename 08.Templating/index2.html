@@ -9,33 +9,20 @@
 </head>
 
 <body>
+    <script>
+        (async function () {
+            let source = await $.get('template3.html')
+            let template = Handlebars.compile(source.documentElement.outerHTML);
+            let context = {
+                name: 'Nasko',
+                phone: '0877987764',
+                email: 'nasko@abv.bg'
+            }
 
-<script>
-    
-   (async function(){
-        
-        let source = await $.get('template3.html')
-
-        let template = Handlebars.compile(source.documentElement.outerHTML);
-        
-        let context = {
-            name : 'Nasko',
-            phone: '0877987764',
-            email: 'nasko@abv.bg'
-        }
-
-        let html = template(context);
-        
-        $('body').append(html);
-
-    }());
-        
-</script>
-
-
-
+            let html = template(context);
+            $('body').append(html);
+        }());
+    </script>
 </body>
+
 </html>
-
-
-
