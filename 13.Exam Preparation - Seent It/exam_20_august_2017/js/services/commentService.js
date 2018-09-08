@@ -1,7 +1,5 @@
 
-
 let comments = (() => {
-
     
     function getPostComments(postId) {
         const endpoint = `comments?query={"postId":"${postId}"}&sort={"_kmd.ect": -1}`;
@@ -21,8 +19,6 @@ let comments = (() => {
 
         return remote.remove('appdata', endpoint, 'kinvey');
     }
-
-
 
     return {
         getPostComments,

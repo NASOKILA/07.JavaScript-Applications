@@ -19,10 +19,8 @@
             </div>
             <div class="controls">
                 <ul>
-                    <!--Zakachame na vseki buton kade da redirektva-->
                     <li class="action"><a class="commentsLink" href="#/details/{{_id}}">details</a></li>
                     {{#if isAuthor}}
-                        <!--tezi shte se pokajat ako sme nie avtorite-->
                         <li class="action"><a class="editLink" href="#/edit/post/{{_id}}">edit</a></li>
                         <li class="action"><a class="deleteLink" href="#/delete/post/{{_id}}">delete</a></li>
                     {{/if}}
