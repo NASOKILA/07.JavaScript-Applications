@@ -6,13 +6,13 @@ module.exports = (grunt) => {
         concat: {
             build: {
                 src: ['js/module.js', 'js/app.js',],
-                dest: 'build/bundle.js',//vzima gornite dva faila i gi slaga v tozi
+                dest: 'build/bundle.js',
             },
         },
         uglify: {
             build: {
                 src: ['build/bundle.js'],
-                dest: 'build/bundle.min.js'//vzima gorniteopisani failove i gi slaga v tozi
+                dest: 'build/bundle.min.js'
             }
         },
 	eslint: {
