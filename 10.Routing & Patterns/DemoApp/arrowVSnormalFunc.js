@@ -7,12 +7,6 @@ let arrow = (ex) => {
 
 arrow('hahaha');
 
-
-console.log()
-console.log()
-console.log()
-
-
 function example(param)
 {
     console.log(this);
