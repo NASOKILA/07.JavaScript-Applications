@@ -1,8 +1,5 @@
 
-
-
 let flightService = (() => {
-
 
     function getPublishedFlights() {
         const endpoint = 'flights?query={"isPublished":"on"}';
