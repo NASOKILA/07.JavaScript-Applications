@@ -170,19 +170,15 @@ $(() => {
             productService.getProductById(productId)
                 .then((product) => {
 
-
                     let cart = JSON.parse(sessionStorage.getItem('cart'));
 
-
                     if (productId in cart) {
-                        //if product already in cart increate the quantity
-
+                        
                         let quantity = Number(cart[productId].quantity);
                         quantity++;
                         cart[productId].quantity = quantity.toString();
                     }
                     else {
-                        //if product NOT in cart
                         let newProductObject = {
                             "quantity": "1",
                             "product": {
@@ -210,16 +206,12 @@ $(() => {
 
         this.get('#/discart/:id', (ctx) => {
 
-
             let productId = ctx.params.id;
-
 
             productService.getProductById(productId)
                 .then((product) => {
 
-
                     let cart = JSON.parse(sessionStorage.getItem('cart'));
-
 
                     if (cart[productId].quantity === "1")
                         delete cart[productId];
@@ -227,7 +219,6 @@ $(() => {
                         let quantity = Number(cart[productId].quantity);
                         quantity--;
                         cart[productId].quantity = quantity.toString();
-
                     }
 
                     let userId = sessionStorage.getItem('userId');
@@ -238,11 +229,7 @@ $(() => {
                             ctx.redirect('#/cart');
                         });
                 });
-
-
         });
-
-
     });
 
     app.run();

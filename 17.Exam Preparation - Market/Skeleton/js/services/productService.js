@@ -1,6 +1,5 @@
 let productService = (() => {
 
-
     function getAllProducts() {
         const endpoint = 'products';
 
@@ -12,7 +11,6 @@ let productService = (() => {
 
         return remote.get('appdata', endpoint, 'kinvey');
     }
-
 
     return {
         getAllProducts,
