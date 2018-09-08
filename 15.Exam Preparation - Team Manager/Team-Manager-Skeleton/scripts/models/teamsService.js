@@ -2,7 +2,6 @@
 
 let teamsService = (() => {
     function loadTeams() {
-        // Request teams from db
         return requester.get('appdata', 'teams', 'kinvey');
     }
 

@@ -15,7 +15,6 @@ let auth = (() => {
         return sessionStorage.getItem('authtoken') != null;
     }
 
-    // user/login
     function login(username, password) {
         let userData = {
             username,
@@ -25,7 +24,6 @@ let auth = (() => {
         return requester.post('user', 'login', 'basic', userData);
     }
 
-    // user/register
     function register(username, password, repeatPassword) {
         let userData = {
             username,
@@ -35,7 +33,6 @@ let auth = (() => {
         return requester.post('user', '', 'basic', userData);
     }
 
-    // user/logout
     function logout() {
         let logoutData = {
             authtoken: sessionStorage.getItem('authtoken')

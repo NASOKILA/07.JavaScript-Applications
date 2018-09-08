@@ -149,8 +149,6 @@ $(() => {
 
             ctx.loggedIn = auth.isAuth();
             ctx.username = sessionStorage.getItem('username');
-
-            //Proverqvame dali ima sobstven team
             ctx.hasNoTeam = sessionStorage.teamId === 'undefined';
 
             teamsService.loadTeams()
@@ -169,14 +167,12 @@ $(() => {
 
         })
 
-        //deteils
         this.get('#/catalog/:teamId', (ctx) => {
 
             if (!auth.isAuth()) {
                 notify.showError('User not logged in !');
                 return;
             }
-
 
             ctx.loggedIn = auth.isAuth();
             ctx.username = sessionStorage.getItem('username');
@@ -194,15 +190,10 @@ $(() => {
                             ctx.team = team
                             ctx.name = team.name
                             ctx.comment = team.comment
-
-                            //za da vidim dali sme v tozi team veche ni trqbva isOnTeam
                             ctx.isOnTeam = team._id === sessionStorage.getItem("teamId")
-
-                            //ako nie sme suzdateli trqbva da imame i Edit team zatova ni trqbva i teamId-to
                             ctx.isAuthor = sessionStorage.getItem('userId') === team._acl.creator;
                             ctx.teamId = team._id;
 
-                           
                             ctx.loadPartials({
                                 header: 'templates/common/header.hbs',
                                 team: 'templates/catalog/team.hbs',
@@ -213,11 +204,7 @@ $(() => {
                                 this.partial('templates/catalog/details.hbs')
                             })
                         })
-
                 })
-
-
-
         })
 
         this.get('#/create', (ctx) => {
