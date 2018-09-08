@@ -1,9 +1,5 @@
 
-
-
 let messagesService = (() => {
-
-
 
     function getMyMessages() {
         let username = sessionStorage.getItem('username');

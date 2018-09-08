@@ -95,7 +95,6 @@ $(() => {
             ctx.username = sessionStorage.getItem('username');
             ctx.name = sessionStorage.getItem('name');
 
-            //my messages
             messagesService.getMyMessages()
                 .then((messages) => {
                     ctx.messages = messages;
@@ -126,8 +125,6 @@ $(() => {
                         })
                     }
                 });
-
-
         });
 
         this.get('#/archive', (ctx) => {
@@ -136,7 +133,6 @@ $(() => {
             ctx.username = sessionStorage.getItem('username');
             ctx.name = sessionStorage.getItem('name');
 
-            //my messages
             messagesService.getSentArchiveMessages()
                 .then((messages) => {
 
@@ -225,12 +221,7 @@ $(() => {
                     notify.showInfo('Message sent.');
                     ctx.redirect('#/archive');
                 });
-
-
         });
-
-
-
 
 
         function formatDate(dateISO8601) {
