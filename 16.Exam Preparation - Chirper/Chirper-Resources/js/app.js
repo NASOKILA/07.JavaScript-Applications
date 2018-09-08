@@ -120,8 +120,6 @@ $(() => {
                                 .then((followers) => {
                                     ctx.followersCount = followers.length;
 
-
-                                    //get all chirps
                                     chirpService.getAllChirps()
                                         .then((chirps) => {
 
@@ -160,19 +158,11 @@ $(() => {
                                             }
 
                                         });
-
-
-
-
                                 });
-
                         });
-
                 });
-
         });
 
-        //create chirp
         this.post('#/home', (ctx) => {
 
             let text = ctx.params.text;
@@ -206,8 +196,6 @@ $(() => {
 
                     ctx.chirpsCount = chirps.length;
                     ctx.chirps = chirps
-
-
 
                     chirpService.countFollowing(username)
                         .then((users) => {
@@ -255,9 +243,7 @@ $(() => {
                                     }
                                 });
                         });
-
                 });
-
         });
 
         this.post('#/me', (ctx) => {
@@ -269,7 +255,6 @@ $(() => {
                 notify.showError('Chirp text shouldn’t be empty !');
                 return;
             }
-
 
             if (text.length > 150) {
                 notify.showError('Chirp text shouldn’t contain more than 150 symbols !');
@@ -310,7 +295,6 @@ $(() => {
                     ctx.users = filteredUsers;
 
                     filteredUsers.forEach(user => {
-                        //ctx.user =  user;
                         chirpService.countFollowers(user.username)
                             .then((followers) => {
                                 user.followersCount = followers.length;
@@ -341,7 +325,6 @@ $(() => {
                     ctx.username = username;
                     ctx.userId = user._id;
 
-                    //proverqvam dali go veche sledvam tozi user
                     let subs = JSON.parse(sessionStorage.getItem('subscriptions'));
 
                     if (subs.indexOf(username) !== -1)
@@ -441,8 +424,6 @@ $(() => {
                         });
                 });
         });
-
-
     });
 
     app.run();
