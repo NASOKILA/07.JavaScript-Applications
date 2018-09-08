@@ -18,8 +18,6 @@ let comments = (() => {
         return remote.remove('appdata', endpoint, 'kinvey');
     }
 
-
-
     return {
         getPostComments,
         createComment,

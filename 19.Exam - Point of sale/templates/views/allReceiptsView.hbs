@@ -10,9 +10,7 @@
             <div class="col">Actions</div>
         </div>
 
-        {{#each receipts}}
-            {{> receipt}}
-        {{/each}}
+        {{#each receipts}} {{> receipt}} {{/each}}
 
         <div class="table-foot">
             <form id="create-receipt-form">
@@ -26,11 +24,10 @@
         </div>
     </div>
 
-    
-        {{#if noEntries}}
-            <p>No entries.</p>
-        {{/if}}
-        
+    {{#if noEntries}}
+    <p>No entries.</p>
+    {{/if}}
+
 </section>
 
 {{> footer}}

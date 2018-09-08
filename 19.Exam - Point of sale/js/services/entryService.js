@@ -1,5 +1,4 @@
 
-
 let entryService = (() => {
 
     function addEntry(type, qty, price, receiptId)
@@ -13,7 +12,6 @@ let entryService = (() => {
         let endpoint = "entries/" + entryId;
         return remote.remove('appdata', endpoint, 'kinvey');
     }
-
 
     return {
         addEntry,

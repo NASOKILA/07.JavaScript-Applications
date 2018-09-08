@@ -1,5 +1,4 @@
 
-
 let receiptService = (() => {
 
     function getActiveReceipt() {
@@ -51,5 +50,3 @@ let receiptService = (() => {
     }
 
 })();
-
-
